@@ -352,7 +352,7 @@
 			m.clCompileUndefinePreprocessorDefinitions,
 			m.clCompileAdditionalIncludeDirectories,
 			m.clCompileAdditionalUsingDirectories,
-			m.jmcoff,
+			m.DisableJMC,
 			m.forceIncludes,
 			m.debugInformationFormat,
 			m.optimization,
@@ -490,6 +490,7 @@
 				m.subSystem,
 				m.fullProgramDatabaseFile,
 				m.generateDebugInformation,
+				m.DisableFastLink,
 				m.optimizeReferences,
 				m.additionalDependencies,
 				m.additionalLibraryDirectories,
@@ -1807,11 +1808,6 @@
 			lookup["FastLink"] = "true"
 			lookup["Full"]     = "true"
 		end
-
-		local value = lookup[cfg.symbols]
-		if value then
-			m.element("GenerateDebugInformation", nil, value)
-		end
 	end
 
 
@@ -2574,9 +2570,15 @@
 		end
 	end
 
-	function m.jmcoff(cfg)
-		if cfg.flags.JMCOff then
+	function m.DisableJMC(cfg)
+		if cfg.flags.DisableJMC then
 			m.element("SupportJustMyCode", condition, "false")
+		end
+	end
+
+	function m.DisableFastLink(cfg)
+		if cfg.flags.DisableFastLink then
+			m.element("GenerateDebugInformation", condition, "false")
 		end
 	end
 
