@@ -352,6 +352,7 @@
 			m.clCompileUndefinePreprocessorDefinitions,
 			m.clCompileAdditionalIncludeDirectories,
 			m.clCompileAdditionalUsingDirectories,
+			m.jmcoff,
 			m.forceIncludes,
 			m.debugInformationFormat,
 			m.optimization,
@@ -2570,6 +2571,12 @@
 	function m.treatWarningAsError(cfg)
 		if cfg.flags.FatalCompileWarnings and cfg.warnings ~= p.OFF then
 			m.element("TreatWarningAsError", nil, "true")
+		end
+	end
+
+	function m.jmcoff(cfg)
+		if cfg.flags.JMCOff then
+			m.element("SupportJustMyCode", condition, "false")
 		end
 	end
 

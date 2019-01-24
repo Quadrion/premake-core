@@ -476,6 +476,7 @@
 			"FatalLinkWarnings",
 			"FloatFast",           -- DEPRECATED
 			"FloatStrict",         -- DEPRECATED
+			"JMCOff",
 			"LinkTimeOptimization",
 			"Managed",             -- DEPRECATED
 			"Maps",
