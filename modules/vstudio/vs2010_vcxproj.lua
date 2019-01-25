@@ -2577,7 +2577,9 @@
 	end
 
 	function m.DisableFastLink(cfg)
-		if cfg.flags.DisableFastLink then
+		if cfg.flags.DisableFastLink and cfg.symbols ~= p.OFF then
+			m.element("GenerateDebugInformation", condition, "DebugFull")
+		elseif cfg.flags.DisableFastLink and cfg.symbols == p.OFF then
 			m.element("GenerateDebugInformation", condition, "false")
 		end
 	end
